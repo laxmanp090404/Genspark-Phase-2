@@ -1,0 +1,467 @@
+Last login: Tue Jun 16 09:36:31 on ttys000
+/dev/fd/12:25: command not found: compdef
+laxmanp@W4N00TW13C-laxmanp ~ % docker run -d \
+--name pg \
+-e POSTGRES_PASSWORD=Training123 \
+-e POSTGRES_USER=postgres \
+-e POSTGRES_DB=traindb \
+-p 5433:5432 \
+postgres:16
+Unable to find image 'postgres:16' locally
+16: Pulling from library/postgres
+3b9cfaff3447: Pull complete 
+e1839ffb73fe: Pull complete 
+487ca9376743: Pull complete 
+dbf107e9ced2: Pull complete 
+7ce9e660c9e6: Pull complete 
+6a70aabb22c1: Pull complete 
+ebe1d7dcdafa: Pull complete 
+f3227aeabe2d: Pull complete 
+98b02b39f094: Pull complete 
+45c3acb06f50: Pull complete 
+bea1edd0577d: Pull complete 
+86e702653a35: Pull complete 
+d1ee1976a32f: Pull complete 
+a5034399c254: Download complete 
+5fffec89869a: Download complete 
+Digest: sha256:081f1bc7bd5e143dbb6e487b710bbc27712cdcfaced4c071b8e47349aa1b4171
+Status: Downloaded newer image for postgres:16
+ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS             PORTS                                         NAMES
+ff342a1d16b8   postgres:16   "docker-entrypoint.s…"   4 seconds ago       Up 3 seconds       0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp   pg
+01678d9dd029   postgres      "docker-entrypoint.s…"   About an hour ago   Up About an hour   5432/tcp                                      some-postgres
+431dfb8c1c26   nginx         "/docker-entrypoint.…"   2 hours ago         Up 2 hours         0.0.0.0:8080->80/tcp, [::]:8080->80/tcp       festive_zhukovsky
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS              PORTS                                         NAMES
+ff342a1d16b8   postgres:16   "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp   pg
+431dfb8c1c26   nginx         "/docker-entrypoint.…"   2 hours ago          Up 2 hours          0.0.0.0:8080->80/tcp, [::]:8080->80/tcp       festive_zhukovsky
+laxmanp@W4N00TW13C-laxmanp ~ % docker history postgres:16
+IMAGE          CREATED      CREATED BY                                      SIZE      COMMENT
+081f1bc7bd5e   5 days ago   CMD ["postgres"]                                0B        buildkit.dockerfile.v0
+<missing>      5 days ago   EXPOSE map[5432/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      5 days ago   STOPSIGNAL SIGINT                               0B        buildkit.dockerfile.v0
+<missing>      5 days ago   ENTRYPOINT ["docker-entrypoint.sh"]             0B        buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c ln -sT docker-ensure-initdb.s…   16.4kB    buildkit.dockerfile.v0
+<missing>      5 days ago   COPY docker-entrypoint.sh docker-ensure-init…   36.9kB    buildkit.dockerfile.v0
+<missing>      5 days ago   VOLUME [/var/lib/postgresql/data]               0B        buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c install --verbose --directory…   20.5kB    buildkit.dockerfile.v0
+<missing>      5 days ago   ENV PGDATA=/var/lib/postgresql/data             0B        buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c install --verbose --directory…   12.3kB    buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -eux;  dpkg-divert --add …   106kB     buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -ex;   export PYTHONDONTW…   336MB     buildkit.dockerfile.v0
+<missing>      5 days ago   ENV PG_VERSION=16.14-1.pgdg13+1                 0B        buildkit.dockerfile.v0
+<missing>      5 days ago   ENV PATH=/usr/local/sbin:/usr/local/bin:/usr…   0B        buildkit.dockerfile.v0
+<missing>      5 days ago   ENV PG_MAJOR=16                                 0B        buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -ex;  key='B97B0AFCAA1A47…   24.6kB    buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c mkdir /docker-entrypoint-init…   8.19kB    buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -eux;  apt-get update;  a…   3.75MB    buildkit.dockerfile.v0
+<missing>      5 days ago   ENV LANG=en_US.utf8                             0B        buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -eux;  if [ -f /etc/dpkg/…   27.3MB    buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -eux;  savedAptMark="$(ap…   3.8MB     buildkit.dockerfile.v0
+<missing>      5 days ago   ENV GOSU_VERSION=1.19                           0B        buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -ex;  apt-get update;  ap…   17.9MB    buildkit.dockerfile.v0
+<missing>      5 days ago   RUN /bin/sh -c set -eux;  groupadd -r postgr…   53.2kB    buildkit.dockerfile.v0
+<missing>      6 days ago   # debian.sh --arch 'arm64' out/ 'trixie' '@1…   109MB     debuerreotype 0.17
+laxmanp@W4N00TW13C-laxmanp ~ % docker inspect pg
+[
+    {
+        "Id": "ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16",
+        "Created": "2026-06-16T06:17:57.84777076Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "postgres"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1235,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-06-16T06:17:58.327897469Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:081f1bc7bd5e143dbb6e487b710bbc27712cdcfaced4c071b8e47349aa1b4171",
+        "ResolvConfPath": "/var/lib/docker/containers/ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16/hostname",
+        "HostsPath": "/var/lib/docker/containers/ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16/hosts",
+        "LogPath": "/var/lib/docker/containers/ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16/ff342a1d16b86072e0173537a8650bb76643895649fcb7836d5cc89d8ae44a16-json.log",
+        "Name": "/pg",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "bridge",
+            "PortBindings": {
+                "5432/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "5433"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                53,
+                190
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "1bf05718e3109a78732e1ebdcdb2439fb2fd20819e46275d48847f1bfcf1f816",
+                "Source": "/var/lib/docker/volumes/1bf05718e3109a78732e1ebdcdb2439fb2fd20819e46275d48847f1bfcf1f816/_data",
+                "Destination": "/var/lib/postgresql/data",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "ff342a1d16b8",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5432/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "POSTGRES_PASSWORD=Training123",
+                "POSTGRES_USER=postgres",
+                "POSTGRES_DB=traindb",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/16/bin",
+                "GOSU_VERSION=1.19",
+                "LANG=en_US.utf8",
+                "PG_MAJOR=16",
+                "PG_VERSION=16.14-1.pgdg13+1",
+                "PGDATA=/var/lib/postgresql/data"
+            ],
+            "Cmd": [
+                "postgres"
+            ],
+            "Image": "postgres:16",
+            "Volumes": {
+                "/var/lib/postgresql/data": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Labels": {},
+            "StopSignal": "SIGINT",
+            "StopTimeout": 1
+        },
+        "NetworkSettings": {
+            "SandboxID": "72a862ac503f465d79daab11de04554ec76c87bb83d63a377ba66c0722c5503f",
+            "SandboxKey": "/var/run/docker/netns/72a862ac503f",
+            "Ports": {
+                "5432/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "5433"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "5433"
+                    }
+                ]
+            },
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "2328b32164af8557b8eb726cd99cfc9719ee35fc8145d73f55f7d06cb3d4f74b",
+                    "EndpointID": "af01b92d78aa161480ce1099b9458a8c426b8147a4dd147df921c9e11f3b25d4",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.4",
+                    "MacAddress": "b6:71:f4:ad:aa:7c",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:bd2740e836cc644b8753c7a195483a3c26c121974be13be0c343f76635d2f2af",
+            "size": 3630,
+            "annotations": {
+                "com.docker.official-images.bashbrew.arch": "arm64v8",
+                "org.opencontainers.image.base.digest": "sha256:e9606f88b5f49b14d013d5c6d54ac7e11a48e13a6ec4c99d952330d03ddc703f",
+                "org.opencontainers.image.base.name": "debian:trixie-slim",
+                "org.opencontainers.image.created": "2026-06-11T00:36:33Z",
+                "org.opencontainers.image.revision": "cdd398f54a863447d5d7486ad6a9952e044e772f",
+                "org.opencontainers.image.source": "https://github.com/docker-library/postgres.git#cdd398f54a863447d5d7486ad6a9952e044e772f:16/trixie",
+                "org.opencontainers.image.url": "https://hub.docker.com/_/postgres",
+                "org.opencontainers.image.version": "16.14"
+            },
+            "platform": {
+                "architecture": "arm64",
+                "os": "linux",
+                "variant": "v8"
+            }
+        }
+    }
+]
+laxmanp@W4N00TW13C-laxmanp ~ % docker inspect pg --format &#39;{{.NetworkSettings.IPAddress}}&#39;
+cursh> 
+laxmanp@W4N00TW13C-laxmanp ~ % docker inspect pg --format '{{.NetworkSettings.IPAddress}}'   
+
+template parsing error: template: :1:18: executing "" at <.NetworkSettings.IPAddress>: map has no entry for key "IPAddress"
+laxmanp@W4N00TW13C-laxmanp ~ % docker inspect pg --format '{{.State.Status}}'   
+running
+laxmanp@W4N00TW13C-laxmanp ~ % docker exec -it pg bash
+root@ff342a1d16b8:/# ls
+bin  boot  dev	docker-entrypoint-initdb.d  etc  home  lib  media  mnt	opt  proc  root  run  sbin  srv  sys  tmp  usr	var
+root@ff342a1d16b8:/# pwd
+/
+root@ff342a1d16b8:/# exit
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug pg
+    Learn more at https://docs.docker.com/go/debug-cli/
+laxmanp@W4N00TW13C-laxmanp ~ % docker exec -it pg psql -U postgres traindb
+psql (16.14 (Debian 16.14-1.pgdg13+1))
+Type "help" for help.
+
+traindb=# \l
+                                                      List of databases
+   Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges   
+-----------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+           |          |          |                 |            |            |            |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+           |          |          |                 |            |            |            |           | postgres=CTc/postgres
+ traindb   | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+(4 rows)
+
+traindb=# \dt
+Did not find any relations.
+traindb=# CREATE TABLE test (id SERIAL PRIMARY KEY, name TEXT);
+CREATE TABLE
+traindb=# INSERT INTO test (name) VALUES ('Docker training');
+INSERT 0 1
+traindb=# select * from test;
+ id |      name       
+----+-----------------
+  1 | Docker training
+(1 row)
+
+traindb=# \q
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug pg
+    Learn more at https://docs.docker.com/go/debug-cli/
+laxmanp@W4N00TW13C-laxmanp ~ % docker stop pg
+pg
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS                                     NAMES
+431dfb8c1c26   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   festive_zhukovsky
+laxmanp@W4N00TW13C-laxmanp ~ % docker start pg
+pg
+laxmanp@W4N00TW13C-laxmanp ~ % docker docker rm -f pg
+unknown shorthand flag: 'f' in -f
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+laxmanp@W4N00TW13C-laxmanp ~ % docker rm pg
+Error response from daemon: cannot remove container "pg": container is running: stop the container before removing or force remove
+laxmanp@W4N00TW13C-laxmanp ~ % docker rm -f pg
+pg
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS                                     NAMES
+431dfb8c1c26   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   festive_zhukovsky
+laxmanp@W4N00TW13C-laxmanp ~ % docker images
+                                                                                                                                                                          i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   96498ffd522e       22.6kB         10.3kB    U   
+nginx:latest         608a100c7165        259MB         64.3MB    U   
+postgres:16          081f1bc7bd5e        663MB          165MB        
+laxmanp@W4N00TW13C-laxmanp ~ % docker rmi postgres:16
+Untagged: postgres:16
+Deleted: sha256:081f1bc7bd5e143dbb6e487b710bbc27712cdcfaced4c071b8e47349aa1b4171
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED       STATUS                   PORTS                                     NAMES
+431dfb8c1c26   nginx         "/docker-entrypoint.…"   2 hours ago   Up 2 hours               0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   festive_zhukovsky
+8fbd2349ee46   hello-world   "/hello"                 2 hours ago   Exited (0) 2 hours ago                                             nifty_bouman
+laxmanp@W4N00TW13C-laxmanp ~ % docker run --rm postgres:16 postgres --version
+Unable to find image 'postgres:16' locally
+16: Pulling from library/postgres
+7ce9e660c9e6: Pull complete 
+3b9cfaff3447: Pull complete 
+45c3acb06f50: Pull complete 
+ebe1d7dcdafa: Pull complete 
+6a70aabb22c1: Pull complete 
+dbf107e9ced2: Pull complete 
+e1839ffb73fe: Pull complete 
+86e702653a35: Pull complete 
+bea1edd0577d: Pull complete 
+f3227aeabe2d: Pull complete 
+d1ee1976a32f: Pull complete 
+487ca9376743: Pull complete 
+98b02b39f094: Pull complete 
+a5034399c254: Download complete 
+5fffec89869a: Download complete 
+Digest: sha256:081f1bc7bd5e143dbb6e487b710bbc27712cdcfaced4c071b8e47349aa1b4171
+Status: Downloaded newer image for postgres:16
+postgres (PostgreSQL) 16.14 (Debian 16.14-1.pgdg13+1)
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps 
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS                                     NAMES
+431dfb8c1c26   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   festive_zhukovsky
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED       STATUS                   PORTS                                     NAMES
+431dfb8c1c26   nginx         "/docker-entrypoint.…"   2 hours ago   Up 2 hours               0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   festive_zhukovsky
+8fbd2349ee46   hello-world   "/hello"                 2 hours ago   Exited (0) 2 hours ago                                             nifty_bouman
+laxmanp@W4N00TW13C-laxmanp ~ % docker images
+                                                                                                                                                                          i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   96498ffd522e       22.6kB         10.3kB    U   
+nginx:latest         608a100c7165        259MB         64.3MB    U   
+postgres:16          081f1bc7bd5e        663MB          165MB        
+laxmanp@W4N00TW13C-laxmanp ~ % docker system prune -a --volumes
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all anonymous volumes not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+8fbd2349ee464ac099823cf6fefd8370af0bfe299d2d15ccee9816a0287cf49a
+
+Deleted Volumes:
+1bf05718e3109a78732e1ebdcdb2439fb2fd20819e46275d48847f1bfcf1f816
+
+Deleted Images:
+untagged: hello-world:latest
+deleted: sha256:96498ffd522e70807ab6384a5c0485a79b9c7c08ca79ba08623edcad1054e62d
+deleted: sha256:5099b89d7666cc2186cad769ddc262ddc7c335b33f5fe79f9ffe50a01282b23e
+deleted: sha256:670045644a15cf4c09e24a61b924660c58f45c4c03c2d17d49b774c04c9bb62b
+untagged: postgres:16
+deleted: sha256:081f1bc7bd5e143dbb6e487b710bbc27712cdcfaced4c071b8e47349aa1b4171
+deleted: sha256:bd2740e836cc644b8753c7a195483a3c26c121974be13be0c343f76635d2f2af
+deleted: sha256:df2604412dc2032eed56bf75900e594b1918681a17a78a69bdc696c37ad2ce03
+
+Total reclaimed space: 182.7MB
+laxmanp@W4N00TW13C-laxmanp ~ % docker images                   
+                                                                                                                                                                          i Info →   U  In Use
+IMAGE          ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest   608a100c7165        259MB         64.3MB    U   
+laxmanp@W4N00TW13C-laxmanp ~ % docker ps                       
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS                                     NAMES
+431dfb8c1c26   nginx     "/docker-entrypoint.…"   2 hours ago   Up 2 hours   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   festive_zhukovsky
+laxmanp@W4N00TW13C-laxmanp ~ %          

@@ -1,0 +1,712 @@
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker version
+Client:
+ Version:           29.5.3
+ API version:       1.54
+ Go version:        go1.26.4
+ Git commit:        d1c06ef
+ Built:             Wed Jun  3 17:59:08 2026
+ OS/Arch:           darwin/arm64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.78.0 (229452)
+ Engine:
+  Version:          29.5.3
+  API version:      1.54 (minimum version 1.40)
+  Go version:       go1.26.4
+  Git commit:       285b471
+  Built:            Wed Jun  3 18:00:14 2026
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          v2.2.4
+  GitCommit:        193637f7ee8ae5f5aa5248f49e7baa3e6164966e
+ runc:
+  Version:          1.3.5
+  GitCommit:        v1.3.5-0-g488fc13e
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose version
+Docker Compose version v5.1.4
+laxmanp@W4N00TW13C-laxmanp compose-lab % dotnet --version
+10.0.203
+laxmanp@W4N00TW13C-laxmanp compose-lab % mkdir compose-postgres-api-lab
+cd compose-postgres-api-lab
+dotnet new webapi -n CustomerApi --no-openapi
+cd CustomerApi
+The template "ASP.NET Core Web API" was created successfully.
+
+Processing post-creation actions...
+Restoring /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj:
+Restore succeeded.
+
+
+laxmanp@W4N00TW13C-laxmanp CustomerApi % dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore.Design
+info : X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/10.0.203/trustedroots/codesignctl.pem'.
+info : X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/10.0.203/trustedroots/timestampctl.pem'.
+info : Adding PackageReference for package 'Npgsql.EntityFrameworkCore.PostgreSQL' into project '/Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj'.
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/index.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/index.json 245ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/page/0.0.1-alpha1/5.0.10.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/page/0.0.1-alpha1/5.0.10.json 239ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/page/6.0.0-preview1/10.0.0-preview.5.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/page/6.0.0-preview1/10.0.0-preview.5.json 241ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/page/10.0.0-preview.7/11.0.0-preview.4.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/npgsql.entityframeworkcore.postgresql/page/10.0.0-preview.7/11.0.0-preview.4.json 235ms
+info : Restoring packages for /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj...
+info :   GET https://api.nuget.org/v3/vulnerabilities/index.json
+info :   OK https://api.nuget.org/v3/vulnerabilities/index.json 317ms
+info :   GET https://api.nuget.org/v3-vulnerabilities/2026.06.16.23.42.46/vulnerability.base.json
+info :   GET https://api.nuget.org/v3-vulnerabilities/2026.06.16.23.42.46/2026.06.18.05.42.50/vulnerability.update.json
+info :   OK https://api.nuget.org/v3-vulnerabilities/2026.06.16.23.42.46/vulnerability.base.json 254ms
+info :   OK https://api.nuget.org/v3-vulnerabilities/2026.06.16.23.42.46/2026.06.18.05.42.50/vulnerability.update.json 305ms
+info : Package 'Npgsql.EntityFrameworkCore.PostgreSQL' is compatible with all the specified frameworks in project '/Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj'.
+info : PackageReference for package 'Npgsql.EntityFrameworkCore.PostgreSQL' version '10.0.2' added to file '/Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj'.
+info : Generating MSBuild file /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/obj/CustomerApi.csproj.nuget.g.props.
+info : Writing assets file to disk. Path: /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/obj/project.assets.json
+log  : Restored /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj (in 787 ms).
+info : X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/10.0.203/trustedroots/codesignctl.pem'.
+info : X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/10.0.203/trustedroots/timestampctl.pem'.
+info : Adding PackageReference for package 'Microsoft.EntityFrameworkCore.Design' into project '/Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj'.
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/index.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/index.json 402ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/0.0.1-alpha/3.1.3.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/0.0.1-alpha/3.1.3.json 236ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/3.1.4/6.0.0-preview.7.21378.4.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/3.1.4/6.0.0-preview.7.21378.4.json 260ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/6.0.0-rc.1.21452.10/7.0.18.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/6.0.0-rc.1.21452.10/7.0.18.json 235ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/7.0.19/9.0.15.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/7.0.19/9.0.15.json 249ms
+info :   GET https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/9.0.16/11.0.0-preview.5.26302.115.json
+info :   OK https://api.nuget.org/v3/registration5-gz-semver2/microsoft.entityframeworkcore.design/page/9.0.16/11.0.0-preview.5.26302.115.json 249ms
+info : Restoring packages for /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj...
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.design/index.json
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.design/index.json 32ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.design/10.0.9/microsoft.entityframeworkcore.design.10.0.9.nupkg
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.design/10.0.9/microsoft.entityframeworkcore.design.10.0.9.nupkg 21ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.relational/index.json
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencymodel/index.json
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.relational/index.json 24ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.relational/10.0.9/microsoft.entityframeworkcore.relational.10.0.9.nupkg
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencymodel/index.json 34ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencymodel/10.0.9/microsoft.extensions.dependencymodel.10.0.9.nupkg
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.relational/10.0.9/microsoft.entityframeworkcore.relational.10.0.9.nupkg 20ms
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.extensions.dependencymodel/10.0.9/microsoft.extensions.dependencymodel.10.0.9.nupkg 30ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore/index.json
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore/index.json 12ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore/10.0.9/microsoft.entityframeworkcore.10.0.9.nupkg
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore/10.0.9/microsoft.entityframeworkcore.10.0.9.nupkg 26ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.abstractions/index.json
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.analyzers/index.json
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.analyzers/index.json 7ms
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.abstractions/index.json 8ms
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.analyzers/10.0.9/microsoft.entityframeworkcore.analyzers.10.0.9.nupkg
+info :   GET https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.abstractions/10.0.9/microsoft.entityframeworkcore.abstractions.10.0.9.nupkg
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.abstractions/10.0.9/microsoft.entityframeworkcore.abstractions.10.0.9.nupkg 5ms
+info :   OK https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.analyzers/10.0.9/microsoft.entityframeworkcore.analyzers.10.0.9.nupkg 6ms
+info : Installed Microsoft.EntityFrameworkCore.Abstractions 10.0.9 from https://api.nuget.org/v3/index.json to /Users/laxmanp/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.9 with content hash GRMaiPkqYna/gCsyDffYDWmefGPC3hDrdMw+2rrGcQwhs6uZOsaMQXMJnoXQ35tx9SkBV2ieRRU9N/jLOO6BZw==.
+info : Installed Microsoft.EntityFrameworkCore.Design 10.0.9 from https://api.nuget.org/v3/index.json to /Users/laxmanp/.nuget/packages/microsoft.entityframeworkcore.design/10.0.9 with content hash NxgqhpB89S6BViMku9B476KopBumtk0IQ4/iVn2GeeUBW9SyzLvWwOR0zPgcooAtRlR0UVzXkaUs71gYHSAbHg==.
+info : Installed Microsoft.EntityFrameworkCore.Analyzers 10.0.9 from https://api.nuget.org/v3/index.json to /Users/laxmanp/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.9 with content hash aiEFB+C5EsZGqxvMPazE07hbWsp4iPaufJpanGt5O+lrwv7mJLrqma5haVIgFAPCyhQkmk75XSCEubT1zUjxtA==.
+info : Installed Microsoft.EntityFrameworkCore.Relational 10.0.9 from https://api.nuget.org/v3/index.json to /Users/laxmanp/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.9 with content hash dEoyYKgiaZHHgOFm1WMWm1sFEsEuhPWufX4L9PekKtqd/RaIcPjkCjvbrVvJtApErb5wPSJhYvnTlxhH+p9h2g==.
+info : Installed Microsoft.Extensions.DependencyModel 10.0.9 from https://api.nuget.org/v3/index.json to /Users/laxmanp/.nuget/packages/microsoft.extensions.dependencymodel/10.0.9 with content hash SCDTQ6HubnRvTUjR7dgMKHZvNoCb03t44ttHL8trlFTGgfDteWn/0nRdOxDhcI+lTWhKgd/flCVJEtAOPhSLNg==.
+info : Installed Microsoft.EntityFrameworkCore 10.0.9 from https://api.nuget.org/v3/index.json to /Users/laxmanp/.nuget/packages/microsoft.entityframeworkcore/10.0.9 with content hash tu85SRzOT021V7EQlViCiAE7TqldVn469Y6lt5TEn/+XC4/MeNCHgMRSxqYuWqvF4zAQZUhCmtNEZuM3ss4LeA==.
+info :   CACHE https://api.nuget.org/v3/vulnerabilities/index.json
+info :   CACHE https://api.nuget.org/v3-vulnerabilities/2026.06.16.23.42.46/vulnerability.base.json
+info :   CACHE https://api.nuget.org/v3-vulnerabilities/2026.06.16.23.42.46/2026.06.18.05.42.50/vulnerability.update.json
+info : Package 'Microsoft.EntityFrameworkCore.Design' is compatible with all the specified frameworks in project '/Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj'.
+info : PackageReference for package 'Microsoft.EntityFrameworkCore.Design' version '10.0.9' added to file '/Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj'.
+info : Generating MSBuild file /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/obj/CustomerApi.csproj.nuget.g.props.
+info : Generating MSBuild file /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/obj/CustomerApi.csproj.nuget.g.targets.
+info : Writing assets file to disk. Path: /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/obj/project.assets.json
+log  : Restored /Users/laxmanp/DotnetWebApi/DOCKER/Day3/compose-lab/compose-postgres-api-lab/CustomerApi/CustomerApi.csproj (in 1.06 sec).
+laxmanp@W4N00TW13C-laxmanp CustomerApi % code .
+laxmanp@W4N00TW13C-laxmanp CustomerApi % 
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 115.9s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 116.1s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 116.2s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 116.4s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 116.5s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 116.7s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 116.8s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.0s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.1s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.3s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.4s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.6s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.7s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 117.9s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.0s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.2s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.3s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.5s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.6s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.8s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 118.9s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 119.1s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 119.2s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 119.4s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 119.5s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 119.7s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 119.8s (11/15)                                                                                                               
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                                  70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                    17.1s
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                            0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                            2.7s
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                            0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                            0.2s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 8.35kB                                                                                                  0.0s
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b0208  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088          0.0s
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                    12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                           0.3s
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                    40.0s
+[+] Building 123.3s (17/17) FINISHED                                                                                                  
+ => [internal] load local bake definitions                                                                                       0.0s
+ => => reading from stdin 650B                                                                                                   0.0s3
+ => [internal] load build definition from Dockerfile                                                                             0.0s
+ => => transferring dockerfile: 434B                                                                                             0.0s2
+ => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:10.0                                                               0.6s
+ => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:10.0                                                            0.6s0
+ => [internal] load .dockerignore                                                                                                0.0s
+ => => transferring context: 122B                                                                                                0.0s0
+ => [build 1/6] FROM mcr.microsoft.com/dotnet/sdk:10.0@sha256:548d93f8a18a1acbe6cc127bc4f47281430d34a9e35c18afa80a8d6741c2adc3  97.7s
+ => => resolve mcr.microsoft.com/dotnet/sdk:10.0@sha256:548d93f8a18a1acbe6cc127bc4f47281430d34a9e35c18afa80a8d6741c2adc3         0.0s0
+ => => sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d 18.04MB / 18.04MB                                20.7s
+ => => sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00 524B / 524B                                       0.2s0
+ => => sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca 180.01MB / 180.01MB                              70.7s
+ => => sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac 23.93MB / 23.93MB                                17.1s0
+ => => extracting sha256:9873ee305d26f22eb2015fac84a641ee173315087d67bbe0b524bc7b31c5d6ac                                        0.4s
+ => => extracting sha256:aa302c615d79ae926c075c5d7c5805e1fb9a9fb603e72eefc3c0e8f1fb6fe4ca                                        2.7s0
+ => => extracting sha256:0db49ed61fae684e35026ac004b1e6f268410e670b1f89cf0dfd3ab695da4e00                                        0.0s
+ => => extracting sha256:f35f1959432dfd12e63c82079455f328799a5c1464543e4fb568a8573839625d                                        0.2s0
+ => [internal] load build context                                                                                                0.0s
+ => => transferring context: 8.35kB                                                                                              0.0s0
+ => [runtime 1/3] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b  40.6s
+ => => resolve mcr.microsoft.com/dotnet/aspnet:10.0@sha256:ddcf70ad1ab963a4fcd41fbd722a6b660e404e87567cfbd46fd2809c21b02088      0.0s0
+ => => sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133 12.21MB / 12.21MB                                12.1s
+ => => sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc 155B / 155B                                       0.3s0
+ => => sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75 34.42MB / 34.42MB                                40.0s
+ => => sha256:159e12afe03519fe690b8ba76bf70a4694093298390a0696a528343525c9abc3 3.56kB / 3.56kB                                   0.2s 
+ => => sha256:4e2ca00095d2eadc0e74ee64dc132c7ad91a5f710cb2d172c6048ba972e9ac6d 19.01MB / 19.01MB                                23.6s
+ => => sha256:fff3795b437199a0b714aadba6fb2c251d7da853c3e257d3fed1d2c8d0f05158 28.88MB / 28.88MB                                32.3s
+ => => extracting sha256:fff3795b437199a0b714aadba6fb2c251d7da853c3e257d3fed1d2c8d0f05158                                        0.6s
+ => => extracting sha256:4e2ca00095d2eadc0e74ee64dc132c7ad91a5f710cb2d172c6048ba972e9ac6d                                        0.3s
+ => => extracting sha256:159e12afe03519fe690b8ba76bf70a4694093298390a0696a528343525c9abc3                                        0.0s
+ => => extracting sha256:5b62fdaf8bbac915803e7b8406cfaa228f67d3c93d1d957ebbf297e865524a75                                        0.4s
+ => => extracting sha256:28e02bfafb8065f224c02808b08091767458e4868fd5a724f4c532060a25c7cc                                        0.0s
+ => => extracting sha256:b79a70852305379947ce8312047eea26fdc1f5171d295734ccfe55ef95884133                                        0.1s
+ => [runtime 2/3] WORKDIR /app                                                                                                   0.3s
+ => [build 2/6] WORKDIR /src                                                                                                     0.7s
+ => [build 3/6] COPY CustomerApi.csproj .                                                                                        0.0s
+ => [build 4/6] RUN dotnet restore                                                                                              20.5s
+ => [build 5/6] COPY . .                                                                                                         0.0s
+ => [build 6/6] RUN dotnet publish -c Release -o /app/publish --no-restore                                                       2.7s
+ => [runtime 3/3] COPY --from=build /app/publish .                                                                               0.0s
+ => exporting to image                                                                                                           0.4s
+ => => exporting layers                                                                                                          0.3s
+ => => exporting manifest sha256:11e2feff38e742345cb104f1dfbe62311303e010f53626c1ab5dabe97e73599d                                0.0s
+ => => exporting config sha256:e6122575537bb6754674bde1cc765748661df0a87ebb10e62d1050eb8ea70589                                  0.0s
+ => => exporting attestation manifest sha256:f8669a572fa8df3aef562433e72573aba5d6892a9b0c80880cffedfc15ca1e80                    0.0s
+ => => exporting manifest list sha256:309a53ba55313fb52997c7c12c7b9dbd0430cc6396577b1d0fd58b2865b5b8c0                           0.0s
+ => => naming to docker.io/library/compose-postgres-api-lab-api:latest                                                           0.0s
+ => => unpacking to docker.io/library/compose-postgres-api-lab-api:latest                                                        0.0s
+ => resolving provenance for metadata file                                                                                       0.0s
+[+] up 5/5
+ ✔ Image compose-postgres-api-lab-api               Built                                                                       123.4s
+ ✔ Network compose-postgres-api-lab_backend-network Created                                                                       0.0s
+ ✔ Volume compose-postgres-api-lab_postgres-data    Created                                                                       0.0s
+ ✔ Container compose-postgres-db                    Created                                                                       0.1s
+ ✔ Container compose-customer-api                   Created                                                                       0.1s
+Attaching to compose-customer-api, compose-postgres-db
+Container compose-postgres-db Waiting 
+compose-postgres-db  | The files belonging to this database system will be owned by user "postgres".
+compose-postgres-db  | This user must also own the server process.
+compose-postgres-db  | 
+compose-postgres-db  | The database cluster will be initialized with locale "en_US.utf8".
+compose-postgres-db  | The default database encoding has accordingly been set to "UTF8".
+compose-postgres-db  | The default text search configuration will be set to "english".
+compose-postgres-db  | 
+compose-postgres-db  | Data page checksums are disabled.
+compose-postgres-db  | 
+compose-postgres-db  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+compose-postgres-db  | creating subdirectories ... ok
+compose-postgres-db  | selecting dynamic shared memory implementation ... posix
+compose-postgres-db  | selecting default max_connections ... 100
+compose-postgres-db  | selecting default shared_buffers ... 128MB
+compose-postgres-db  | selecting default time zone ... Etc/UTC
+compose-postgres-db  | creating configuration files ... ok
+compose-postgres-db  | running bootstrap script ... ok
+compose-postgres-db  | performing post-bootstrap initialization ... ok
+compose-postgres-db  | syncing data to disk ... ok
+compose-postgres-db  | 
+compose-postgres-db  | 
+compose-postgres-db  | Success. You can now start the database server using:
+compose-postgres-db  | 
+compose-postgres-db  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+compose-postgres-db  | 
+compose-postgres-db  | initdb: warning: enabling "trust" authentication for local connections
+compose-postgres-db  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+compose-postgres-db  | waiting for server to start....2026-06-18 06:50:41.507 UTC [48] LOG:  starting PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+compose-postgres-db  | 2026-06-18 06:50:41.508 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+compose-postgres-db  | 2026-06-18 06:50:41.511 UTC [51] LOG:  database system was shut down at 2026-06-18 06:50:41 UTC
+compose-postgres-db  | 2026-06-18 06:50:41.513 UTC [48] LOG:  database system is ready to accept connections
+compose-postgres-db  |  done
+compose-postgres-db  | server started
+compose-postgres-db  | CREATE DATABASE
+compose-postgres-db  | 
+compose-postgres-db  | 
+compose-postgres-db  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+compose-postgres-db  | 
+compose-postgres-db  | waiting for server to shut down....2026-06-18 06:50:41.667 UTC [48] LOG:  received fast shutdown request
+compose-postgres-db  | 2026-06-18 06:50:41.667 UTC [48] LOG:  aborting any active transactions
+compose-postgres-db  | 2026-06-18 06:50:41.669 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+compose-postgres-db  | 2026-06-18 06:50:41.669 UTC [49] LOG:  shutting down
+compose-postgres-db  | 2026-06-18 06:50:41.669 UTC [49] LOG:  checkpoint starting: shutdown immediate
+compose-postgres-db  | 2026-06-18 06:50:41.698 UTC [49] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.018 s, total=0.030 s; sync files=301, longest=0.006 s, average=0.001 s; distance=4273 kB, estimate=4273 kB; lsn=0/191F0A0, redo lsn=0/191F0A0
+compose-postgres-db  | 2026-06-18 06:50:41.701 UTC [48] LOG:  database system is shut down
+compose-postgres-db  |  done
+compose-postgres-db  | server stopped
+compose-postgres-db  | 
+compose-postgres-db  | PostgreSQL init process complete; ready for start up.
+compose-postgres-db  | 
+compose-postgres-db  | 2026-06-18 06:50:41.786 UTC [1] LOG:  starting PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+compose-postgres-db  | 2026-06-18 06:50:41.786 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+compose-postgres-db  | 2026-06-18 06:50:41.786 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+compose-postgres-db  | 2026-06-18 06:50:41.788 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+compose-postgres-db  | 2026-06-18 06:50:41.791 UTC [64] LOG:  database system was shut down at 2026-06-18 06:50:41 UTC
+compose-postgres-db  | 2026-06-18 06:50:41.794 UTC [1] LOG:  database system is ready to accept connections
+Container compose-postgres-db Healthy 
+compose-customer-api  | Cannot load library libgssapi_krb5.so.2 
+compose-customer-api  | Error: libgssapi_krb5.so.2: cannot open shared object file: No such file or directory
+compose-postgres-db   | 2026-06-18 06:50:47.445 UTC [76] ERROR:  relation "__EFMigrationsHistory" does not exist at character 45
+compose-postgres-db   | 2026-06-18 06:50:47.445 UTC [76] STATEMENT:  SELECT "MigrationId", "ProductVersion"
+compose-postgres-db   |         FROM "__EFMigrationsHistory"
+compose-postgres-db   |         ORDER BY "MigrationId"
+compose-customer-api  | fail: Microsoft.EntityFrameworkCore.Database.Command[20102]
+compose-customer-api  |       Failed executing DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+compose-customer-api  |       SELECT "MigrationId", "ProductVersion"
+compose-customer-api  |       FROM "__EFMigrationsHistory"
+compose-customer-api  |       ORDER BY "MigrationId";
+compose-customer-api  | info: Microsoft.EntityFrameworkCore.Migrations[20411]
+compose-customer-api  |       Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+compose-customer-api  | info: Microsoft.EntityFrameworkCore.Migrations[20402]
+compose-customer-api  |       Applying migration '20260618063603_InitialCreate'.
+compose-customer-api  | warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+compose-customer-api  |       Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+compose-customer-api  | info: Microsoft.Hosting.Lifetime[14]
+compose-customer-api  |       Now listening on: http://[::]:8080
+compose-customer-api  | info: Microsoft.Hosting.Lifetime[0]
+compose-customer-api  |       Application started. Press Ctrl+C to shut down.
+compose-customer-api  | info: Microsoft.Hosting.Lifetime[0]
+compose-customer-api  |       Hosting environment: Development
+compose-customer-api  | info: Microsoft.Hosting.Lifetime[0]
+compose-customer-api  |       Content root path: /app
+compose-postgres-db   | 2026-06-18 06:55:41.786 UTC [62] LOG:  checkpoint starting: time
+compose-postgres-db   | 2026-06-18 06:55:51.460 UTC [62] LOG:  checkpoint complete: wrote 96 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=9.660 s, sync=0.009 s, total=9.674 s; sync files=52, longest=0.006 s, average=0.001 s; distance=443 kB, estimate=443 kB; lsn=0/198E0A8, redo lsn=0/198E070
+compose-customer-api  | info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+compose-customer-api  |       Executed DbCommand (25ms) [Parameters=[@p0='?', @p1='?'], CommandType='Text', CommandTimeout='30']
+compose-customer-api  |       INSERT INTO "Customers" ("Email", "Name")
+compose-customer-api  |       VALUES (@p0, @p1)
+compose-customer-api  |       RETURNING "Id";
+compose-customer-api  | info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+compose-customer-api  |       Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+compose-customer-api  |       SELECT c."Id", c."Email", c."Name"
+compose-customer-api  |       FROM "Customers" AS c
+compose-postgres-db   | 2026-06-18 07:00:41.566 UTC [62] LOG:  checkpoint starting: time
+compose-postgres-db   | 2026-06-18 07:00:42.638 UTC [62] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.049 s, sync=0.005 s, total=1.073 s; sync files=8, longest=0.003 s, average=0.001 s; distance=0 kB, estimate=399 kB; lsn=0/198E358, redo lsn=0/198E320
+
+
+v View in Docker Desktop   o View Config   l View Logs   w Enable Watch   d Detach
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % docker compose ps
+NAME                   IMAGE                          COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+compose-customer-api   compose-postgres-api-lab-api   "dotnet CustomerApi.…"   api        41 seconds ago   Up 34 seconds             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+compose-postgres-db    postgres:16                    "docker-entrypoint.s…"   postgres   41 seconds ago   Up 40 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % curl http://localhost:8080/
+Customer API is running%                                                                                                                             
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % curl http://localhost:8080/health
+Healthy%                                                                                                                                             
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % curl -X POST http://localhost:8080/customers -H "Content-Type: application/json" -d          
+"{"name":"Gayathri","email":"gayathri@example.com"}"
+curl: option -d: requires parameter
+curl: try 'curl --help' or 'curl --manual' for more information
+zsh: command not found: {name:Gayathri,email:gayathri@example.com}
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % curl -X POST http://localhost:8080/customers -H "Content-Type: application/json" -d '{"name":"Gayathri","email":"gayathri@example.com"}'
+{"id":1,"name":"Gayathri","email":"gayathri@example.com"}%                                                                                           
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % curl http://localhost:8080/customers
+[{"id":1,"name":"Gayathri","email":"gayathri@example.com"}]%                                                                                         
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % docker exec -it compose-postgres-db psql -U postgres -d customerdb
+psql (16.14 (Debian 16.14-1.pgdg13+1))
+Type "help" for help.
+
+customerdb=# \dt
+                 List of relations
+ Schema |         Name          | Type  |  Owner   
+--------+-----------------------+-------+----------
+ public | Customers             | table | postgres
+ public | __EFMigrationsHistory | table | postgres
+(2 rows)
+
+customerdb=# select * from "Customers";
+ Id |   Name   |        Email         
+----+----------+----------------------
+  1 | Gayathri | gayathri@example.com
+(1 row)
+
+customerdb=# \q
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug compose-postgres-db
+    Learn more at https://docs.docker.com/go/debug-cli/
+laxmanp@W4N00TW13C-laxmanp compose-postgres-api-lab % 

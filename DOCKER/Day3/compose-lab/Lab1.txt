@@ -1,0 +1,82 @@
+traindb=# \dt
+Did not find any relations.
+traindb=# \q
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose exec db pg_isready -U postgres
+/var/run/postgresql:5432 - accepting connections
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose run --rm db psql -U postgres traindb -c &quot;\\l&quot;
+[1] 14628
+zsh: command not found: quot
+[2] 14630
+zsh: command not found: \l
+[2]  + exit 127   \\l
+zsh: command not found: quot
+laxmanp@W4N00TW13C-laxmanp compose-lab % Container compose-lab-db-run-764f63a47be5 Creating 
+Container compose-lab-db-run-764f63a47be5 Created 
+
+[1]  + suspended (tty output)  docker compose run --rm db psql -U postgres traindb -c
+laxmanp@W4N00TW13C-laxmanp compose-lab % unable to setup input stream: unable to set IO streams as raw terminal: interrupted system call
+
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose run --rm db psql -U postgres traindb -c "\\l"          
+Container compose-lab-db-run-28b7ef21da50 Creating 
+Container compose-lab-db-run-28b7ef21da50 Created 
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+        Is the server running locally and accepting connections on that socket?
+
+
+What's next:
+    Debug this Compose error with Gordon → docker ai "help me fix this compose error"
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose run --rm db psql -U postgres traindb -c "\\l"          
+Container compose-lab-db-run-962e5adfdf05 Creating 
+Container compose-lab-db-run-962e5adfdf05 Created 
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+        Is the server running locally and accepting connections on that socket?
+
+
+What's next:
+    Debug this Compose error with Gordon → docker ai "help me fix this compose error"
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose up -d db 
+[+] up 1/1
+ ✔ Container compose-lab-db-1 Running                                                                                                 0.0s
+
+What's next:
+    Filter, search, and stream logs from all your Compose services
+    in one place with Docker Desktop's Logs view. docker-desktop://dashboard/logs?appId=compose-lab
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose run --rm db psql -U postgres traindb -c "\\l"          
+Container compose-lab-db-run-470f0247f37f Creating 
+Container compose-lab-db-run-470f0247f37f Created 
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+        Is the server running locally and accepting connections on that socket?
+
+
+What's next:
+    Debug this Compose error with Gordon → docker ai "help me fix this compose error"
+laxmanp@W4N00TW13C-laxmanp compose-lab % clear                                                       
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose restart db
+[+] restart 0/1
+ ⠹ Container compose-lab-db-1 Restarting                                                                                              0.2s
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose down
+[+] down 2/2
+ ✔ Container compose-lab-db-1 Removed                                                                                                 0.2s
+ ! Network compose-lab_appnet Resource is still in use                                                                                0.0s
+laxmanp@W4N00TW13C-laxmanp compose-lab % volume ls
+zsh: command not found: volume
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker volume ls
+DRIVER    VOLUME NAME
+local     b59092754c3c177145b3b0c3573a1ad415b63f546cdc4267ed20a3cacb054a7a
+local     compose-lab_pgdata
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose up -d
+[+] up 1/1
+ ✔ Container compose-lab-db-1 Started                                                                                                 0.2s
+
+What's next:
+    Filter, search, and stream logs from all your Compose services
+    in one place with Docker Desktop's Logs view. docker-desktop://dashboard/logs?appId=compose-lab
+laxmanp@W4N00TW13C-laxmanp compose-lab % docker compose exec db psql -U postgres traindb -c "SELECT datname FROM
+pg_database;"
+  datname  
+-----------
+ postgres
+ traindb
+ template1
+ template0
+(4 rows)
