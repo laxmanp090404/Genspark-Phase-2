@@ -1,0 +1,88 @@
+laxmanp@W4N00TW13C-laxmanp DOCKER % cd Day-6 
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl apply -f lab1-nginx.yaml
+
+error: the path "lab1-nginx.yaml" does not exist
+laxmanp@W4N00TW13C-laxmanp Day-6 % clear                           
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl apply -f lab1-nginx.yaml
+
+deployment.apps/nginx-demo created
+service/nginx-demo created
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-68285   1/1     Running   0          19s
+nginx-demo-dd58d7d7d-kq4t4   1/1     Running   0          19s
+nginx-demo-dd58d7d7d-xqlkw   1/1     Running   0          19s
+postgres-7fbcbb5d5d-7jmds    1/1     Running   0          16m
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl get deployments
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-demo   3/3     3            3           36s
+postgres     1/1     1            1           34m
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    41m
+nginx-demo   ClusterIP   10.96.164.10   <none>        80/TCP     53s
+postgres     ClusterIP   10.96.169.79   <none>        5432/TCP   35m
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl get pods
+
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-68285   1/1     Running   0          118s
+nginx-demo-dd58d7d7d-kq4t4   1/1     Running   0          118s
+nginx-demo-dd58d7d7d-xqlkw   1/1     Running   0          118s
+postgres-7fbcbb5d5d-7jmds    1/1     Running   0          18m
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl delete pod nginx-demo-dd58d7d7d-68285
+pod "nginx-demo-dd58d7d7d-68285" deleted from default namespace
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl get pods                             
+
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-kq4t4   1/1     Running   0          2m35s
+nginx-demo-dd58d7d7d-q9bsh   1/1     Running   0          10s
+nginx-demo-dd58d7d7d-xqlkw   1/1     Running   0          2m35s
+postgres-7fbcbb5d5d-7jmds    1/1     Running   0          19m
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl scale deployment nginx-demo --replicas=5
+
+deployment.apps/nginx-demo scaled
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl get pods                                
+
+NAME                         READY   STATUS    RESTARTS   AGE
+nginx-demo-dd58d7d7d-6jphw   1/1     Running   0          7s
+nginx-demo-dd58d7d7d-kq4t4   1/1     Running   0          3m44s
+nginx-demo-dd58d7d7d-q9bsh   1/1     Running   0          79s
+nginx-demo-dd58d7d7d-sxspm   1/1     Running   0          7s
+nginx-demo-dd58d7d7d-xqlkw   1/1     Running   0          3m44s
+postgres-7fbcbb5d5d-7jmds    1/1     Running   0          20m
+laxmanp@W4N00TW13C-laxmanp Day-6 % kubectl describe deployment nginx-demo
+Name:                   nginx-demo
+Namespace:              default
+CreationTimestamp:      Wed, 24 Jun 2026 12:21:06 +0530
+Labels:                 app=nginx-demo
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=nginx-demo
+Replicas:               5 desired | 5 updated | 5 total | 5 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx-demo
+  Containers:
+   nginx:
+    Image:         nginx:latest
+    Port:          80/TCP
+    Host Port:     0/TCP
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   nginx-demo-dd58d7d7d (5/5 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  4m10s  deployment-controller  Scaled up replica set nginx-demo-dd58d7d7d from 0 to 3
+  Normal  ScalingReplicaSet  33s    deployment-controller  Scaled up replica set nginx-demo-dd58d7d7d from 3 to 5
+laxmanp@W4N00TW13C-laxmanp Day-6 %    
